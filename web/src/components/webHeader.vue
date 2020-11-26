@@ -1,0 +1,87 @@
+<template>
+  <div class="webHeader">
+    <div class="flag">
+      <span class="flag-left">欢迎进入智能健康手环官网！</span>
+      <span class="flag-right"><i class="iconfont icon-dianhua"> </i> 400-123-000 <i class="iconfont icon-22"> </i> echo_msy@163.com </span>
+    </div>
+    <div class="nav">
+      <div class="nav-logo">
+        <img src="../assets/logo.jpg" alt="" class="logo">
+        <span>智能健康手环</span>
+      </div>
+      <router-link to="/" class="nav-list"><span>首页</span></router-link>
+      <router-link to="/" class="nav-list"><span>产品中心</span></router-link>
+      <router-link to="/" class="nav-list"><span>新闻资讯</span></router-link>
+      <router-link to="/" class="nav-list"><span>关于我们</span></router-link>
+      <router-link to="/" class="nav-list"><span>登录</span></router-link>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'webHeader',
+  data() {
+    return {
+    };
+  },
+  computed:{
+  },
+  watch:{
+  },
+  methods: {},
+};
+</script>
+<style scoped lang="less">
+@import '../assets/iconfont/iconfont.css';
+.webHeader {
+  height: 42px;
+  .flag {
+    padding: 0 10%;
+    font-size: 12px;
+    background-color: rgb(190, 0, 0);
+    color: #fff;
+    line-height: 30px;
+    display: flex;
+    justify-content: center;
+    .iconfont {
+      width: 12px;
+    }
+    .flag-left , .flag-right {
+      flex: 1;
+    }
+  }
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 10%;
+    height: 86px;
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-weight: 600;
+      .logo {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto;
+      }
+    }
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-decoration: none;
+      span {
+        color: #090329;
+        &:hover {
+          border-bottom: 3px solid rgb(190, 0, 0);
+        }
+        &:active {
+          border-bottom: 3px solid rgb(190, 0, 0);
+        }
+      }
+    }
+  }
+}
+</style>
