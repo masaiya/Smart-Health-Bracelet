@@ -10,10 +10,10 @@
         <span>智能健康手环</span>
       </div>
       <router-link to="/" class="nav-list"><span>首页</span></router-link>
-      <router-link to="/" class="nav-list"><span>产品中心</span></router-link>
-      <router-link to="/" class="nav-list"><span>新闻资讯</span></router-link>
-      <router-link to="/" class="nav-list"><span>关于我们</span></router-link>
-      <router-link to="/" class="nav-list"><span>登录</span></router-link>
+      <router-link to="/product" class="nav-list"><span>产品中心</span></router-link>
+      <router-link to="/news" class="nav-list"><span>新闻资讯</span></router-link>
+      <router-link to="/about" class="nav-list"><span>关于我们</span></router-link>
+      <router-link to="/login" class="nav-list"><span>登录</span></router-link>
     </div>
   </div>
 </template>

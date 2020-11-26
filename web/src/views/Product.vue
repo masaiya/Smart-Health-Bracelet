@@ -1,5 +1,25 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div class="product">product</div>
 </template>
+
+<script>
+export default {
+  name: 'product',
+  data() {
+    return {
+    };
+  },
+  computed:{
+  },
+  watch:{
+  },
+  methods: {},
+};
+</script>
+
+<style scoped lang="less">
+.product {
+  height: 1000px;
+  padding-top: 135px;
+}
+</style>
