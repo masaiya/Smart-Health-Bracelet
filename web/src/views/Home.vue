@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="merge-right">
-
+        智能健康手环系统使用DSP+ARM双芯片结构，DSP主要负责接收北斗模块的定位信息和算法处理功能，ARM芯片负责与DSP芯片通信、控制TFT液晶屏的显示功能。硬件设计主要包括电源部分、ARM部分、DSP部分、网络部分、TFT液晶屏部分以及北斗模块多部分的设计。
       </div>
     </div>
   </div>
@@ -53,6 +53,8 @@ export default {
   .merge-left {
     margin-top: 30px;
     height: 520px;
+    width: 480px;
+    flex-basis: 480px;
     .line-one {
       width: 480px;
       height: 480px;
@@ -86,6 +88,9 @@ export default {
         padding: 0 60px;
       }
     }
+  }
+  .merge-right {
+    
   }
 }
 

@@ -9,11 +9,11 @@
         <img src="../assets/logo.jpg" alt="" class="logo">
         <span>智能健康手环</span>
       </div>
-      <router-link to="/" class="nav-list"><span>首页</span></router-link>
-      <router-link to="/product" class="nav-list"><span>产品中心</span></router-link>
-      <router-link to="/news" class="nav-list"><span>新闻资讯</span></router-link>
-      <router-link to="/about" class="nav-list"><span>关于我们</span></router-link>
-      <router-link to="/login" class="nav-list"><span>登录</span></router-link>
+      <router-link to="/" class="nav-list"><a>首页</a></router-link>
+      <router-link to="/product" class="nav-list"><a>产品中心</a></router-link>
+      <router-link to="/news" class="nav-list"><a>新闻资讯</a></router-link>
+      <router-link to="/about" class="nav-list"><a>关于我们</a></router-link>
+      <router-link to="/login" class="nav-list"><a>登录</a></router-link>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
   },
   watch:{
   },
-  methods: {},
+  methods: {
+  },
 };
 </script>
 <style scoped lang="less">
@@ -76,14 +77,14 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      span {
+      a:link {
         color: #090329;
-        &:hover {
-          border-bottom: 3px solid rgb(190, 0, 0);
-        }
-        &:active {
-          border-bottom: 3px solid rgb(190, 0, 0);
-        }
+      }
+      a:active {
+        border-bottom: 3px solid rgb(190, 0, 0);
+      }
+      a:hover {
+        border-bottom: 3px solid rgb(190, 0, 0);
       }
     }
   }

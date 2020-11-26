@@ -13,7 +13,13 @@
     </div>
     <div class="about-design">
       <h3>项目设计</h3>
-    </div>
+      <el-tabs tab-position="left" style="height: 200px;" color="rgb(190,0,0)">
+        <el-tab-pane label="体温">BMP180不仅可以实时的测量大气压力，还能测量实时温度。</el-tab-pane>
+        <el-tab-pane label="气压">BMP180不仅可以实时的测量大气压力，还能测量实时温度。</el-tab-pane>
+        <el-tab-pane label="心率">MAX30100是一款集成有脉搏血氧仪和心率监测传感器的模块,经过优化的光学器件和低噪声模拟信号处理器，可检测脉搏血氧及心率信号。</el-tab-pane>
+        <el-tab-pane label="步数">MPU-60X0对陀螺仪和加速计分别用了三个16位的ADC，将其测量的模拟量转化为可输出的数字量。</el-tab-pane>
+      </el-tabs>
+    </div>  
   </div>
 </template>
 
