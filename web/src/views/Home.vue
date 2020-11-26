@@ -1,16 +1,17 @@
 <template>
   <div class="home">
-    <webHeader></webHeader>
-    <webFooter></webFooter>
+    11122223333
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  components: {
-    webHeader: () => import(/* webpackChunkName: "webHeader" */ '../components/webHeader.vue'),
-    webFooter: () => import(/* webpackChunkName: "webFooter" */ '../components/webFooter.vue')
-  }
+  name: 'Home'
 }
 </script>
+<style lang="less" scoped>
+.home {
+  height: 1000px;
+  padding-top: 128px;
+}
+</style>

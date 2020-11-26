@@ -36,6 +36,9 @@ export default {
 @import '../assets/iconfont/iconfont.css';
 .webHeader {
   height: 42px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
   .flag {
     padding: 0 10%;
     font-size: 12px;
@@ -54,8 +57,10 @@ export default {
   .nav {
     display: flex;
     justify-content: space-around;
-    margin: 10px 10%;
+    padding: 10px 10%;
     height: 86px;
+    background-color: #fff;
+    border-bottom: 1px solid #eaecef;
     .nav-logo {
       display: flex;
       flex-direction: column;
@@ -71,7 +76,6 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      text-decoration: none;
       span {
         color: #090329;
         &:hover {

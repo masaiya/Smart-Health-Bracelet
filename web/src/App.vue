@@ -1,28 +1,18 @@
 <template>
   <div id="app">
+    <webHeader></webHeader>
     <router-view/>
+    <webFooter></webFooter>
   </div>
 </template>
-
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+export default {
+  name: 'app',
+  components: {
+    webHeader: () => import(/* webpackChunkName: "webHeader" */ './components/webHeader.vue'),
+    webFooter: () => import(/* webpackChunkName: "webFooter" */ './components/webFooter.vue')
   }
 }
+</script>
+<style lang="less">
 </style>
