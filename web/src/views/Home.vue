@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="merge-right">
-        
+
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      imgList: ['index_banner1.png','index_banner2.svg','index_banner1.png','index_banner2.svg']
+      imgList: ['index_banner1.png', 'index_banner2.svg', 'index_banner1.png', 'index_banner2.svg']
     }
   }
 }
