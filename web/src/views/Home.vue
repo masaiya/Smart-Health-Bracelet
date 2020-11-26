@@ -5,6 +5,7 @@
         <img :src="require('../assets/img/banner/'+item)" alt="">
       </el-carousel-item>
     </el-carousel>
+    
   </div>
 </template>
 
