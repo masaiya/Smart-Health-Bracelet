@@ -1,5 +1,5 @@
 <template>
-  <div class="webHeader">
+  <div class="webHeader" :class="{ fixed: isFixed}">
     <div class="flag">
       <span class="flag-left">欢迎进入智能健康手环官网！</span>
       <span class="flag-right"><i class="iconfont icon-dianhua"> </i> 400-123-000 <i class="iconfont icon-22"> </i> echo_msy@163.com </span>
@@ -23,6 +23,7 @@ export default {
   name: 'webHeader',
   data() {
     return {
+      isFixed: false
     };
   },
   computed:{
@@ -30,17 +31,30 @@ export default {
   watch:{
   },
   methods: {
+    scrollHandle(e) {
+      let top = e.srcElement.scrollingElement.scrollTop;
+      if(top < 600) {
+        this.isFixed = true;
+      } else {
+        this.isFixed = false;
+      }
+    }
   },
+  mounted() {
+    window.addEventListener('scroll', this.scrollHandle);
+  }
 };
 </script>
 <style scoped lang="less">
 @import '../assets/iconfont/iconfont.css';
 .webHeader {
   height: 42px;
-  position: fixed;
   width: 100%;
   z-index: 10;
+  position: relative;
+  transition: all 3s;
   .flag {
+    width: 100%;
     padding: 0 10%;
     font-size: 12px;
     background-color: rgb(190, 0, 0);
@@ -51,15 +65,16 @@ export default {
     .iconfont {
       width: 12px;
     }
-    .flag-left , .flag-right {
+    .flag-left, .flag-right {
       flex: 1;
     }
   }
   .nav {
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 10px 10%;
-    height: 86px;
+    padding: 5px 10%;
+    height: 65px;
     background-color: #fff;
     border-bottom: 1px solid #eaecef;
     .nav-logo {
@@ -68,8 +83,8 @@ export default {
       justify-content: center;
       font-weight: 600;
       .logo {
-        width: 65px;
-        height: 65px;
+        width: 45px;
+        height: 45px;
         margin: 0 auto;
       }
     }
@@ -86,7 +101,10 @@ export default {
       a:hover {
         border-bottom: 3px solid rgb(190, 0, 0);
       }
-    }
+    } 
+  }
+  .fixed {
+    position: fixed;
   }
 }
 </style>

@@ -36,7 +36,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  padding-top: 135px;
+  padding-top: 65px;
 }
 .el-carousel__item img {
   width: 1920px;
@@ -89,9 +89,9 @@ export default {
       }
     }
   }
-  .merge-right {
+  // .merge-right {
     
-  }
+  // }
 }
 
 @keyframes turn {
