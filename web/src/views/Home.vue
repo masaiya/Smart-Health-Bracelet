@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-carousel indicator-position="outside" height="560px">
+    <el-carousel indicator-position="outside" height="400px">
       <el-carousel-item v-for="(item, index) in imgList" :key="index">
         <img :src="require('../assets/img/banner/'+item)" alt="">
       </el-carousel-item>
@@ -39,8 +39,8 @@ export default {
   padding-top: 135px;
 }
 .el-carousel__item img {
-  width: 1920px;
-  height: 560px;
+  width: 1350px;
+  // height: 560px;
 }
 .data-merge {
   padding: 0 10%;

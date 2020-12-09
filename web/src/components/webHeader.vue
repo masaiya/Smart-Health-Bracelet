@@ -13,7 +13,7 @@
       <router-link to="/product" class="nav-list"><a>产品中心</a></router-link>
       <router-link to="/news" class="nav-list"><a>新闻资讯</a></router-link>
       <router-link to="/about" class="nav-list"><a>关于我们</a></router-link>
-      <router-link to="/login" class="nav-list"><a>登录</a></router-link>
+      <router-link to="/iot" class="nav-list"><a>登录</a></router-link>
     </div>
   </div>
 </template>
