@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="less">
 .about {
-  padding-top: 135px;
+  padding-top: 55px;
   .about-banner {
     width: 100%;
   }

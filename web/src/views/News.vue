@@ -20,6 +20,6 @@ export default {
 <style scoped lang="less">
 .news {
   height: 1000px;
-  padding-top: 135px;
+  padding-top: 55px;
 }
 </style>

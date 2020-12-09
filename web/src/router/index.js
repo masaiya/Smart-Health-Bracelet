@@ -29,16 +29,42 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/iot',
-    name: 'Iot',
-    component: () => import(/* webpackChunkName: "login" */ '../views/Iot.vue'),
+    path: '/my',
+    name: 'My',
+    component: () => import(/* webpackChunkName: "about" */ '../views/My.vue'),
+    redirect: '/new_health',
     children: [
       {
-        path: '/reg',
-        name: 'Reg',
-        component: () => import(/* webpackChunkName: "login" */ '../views/Reg.vue')
+        path: '/new_health',
+        name: 'NewHealth',
+        component: () => import(/* webpackChunkName: "newHealth" */ '../views/info/NewHealth.vue')
+      },
+      {
+        path: '/new_danger',
+        name: 'NewDanger',
+        component: () => import(/* webpackChunkName: "newDanger" */ '../views/info/NewDanger.vue')
+      },
+      {
+        path: '/old_health',
+        name: 'OldHealth',
+        component: () => import(/* webpackChunkName: "oldHealth" */ '../views/info/OldHealth.vue')
+      },
+      {
+        path: '/old_danger',
+        name: 'OldDanger',
+        component: () => import(/* webpackChunkName: "oldDanger" */ '../views/info/OldDanger.vue')
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+  },
+  {
+    path: '/reg',
+    name: 'Reg',
+    component: () => import(/* webpackChunkName: "reg" */ '../views/Reg.vue')
   }
 ]
 

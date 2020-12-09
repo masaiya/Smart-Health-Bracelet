@@ -1,51 +1,68 @@
 <template>
   <div class="reg">
     <h2>注册</h2>
-    <form id="reg_form" action="/iot/reg" method="post">
+    <form id="reg_form" onsubmit="return false;">
       <div class="input-group cell">
         <span class="input-group-addon">用户名:</span>
         <input type="text" class="form-control" placeholder="请输入用户名" name="username" v-model="inputUser.username"> 
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">保护对象:</span>
         <input type="text" class="form-control" placeholder="请输入保护对象" name="protectid" v-model="inputUser.protectid">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">电话号码:</span>
         <input type="text" class="form-control" placeholder="请输入电话号码" name="phone" v-model="inputUser.phone">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">性别:</span>
+        <!-- <el-radio v-model="radio" label="1">备选项</el-radio>
+        <el-radio v-model="radio" label="2">备选项</el-radio> -->
         <input type="text" class="form-control" placeholder="请输入性别" name="sex" v-model="inputUser.sex">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">年龄:</span>
         <input type="text" class="form-control" placeholder="请输入年龄" name="age" v-model="inputUser.age">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">住址:</span>
         <input type="text" class="form-control" placeholder="请输入地址" name="address" v-model="inputUser.address">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">工作:</span>
         <input type="text" class="form-control" placeholder="请输入工作" name="works" v-model="inputUser.works">
       </div>
+      <br>
+      <br>
       <div class="input-group cell">
         <span class="input-group-addon">密码:</span>
         <input type="text" class="form-control" placeholder="请输入密码" name="password" v-model="inputUser.password">
       </div>
+      <br>
+      <br>
       <div class="input-group subBtn">
-        <button class="btn btn-success" id="submit">确认</button>
+        <button class="btn btn-success" id="submit" @click="reg()">确认</button>
         <a href="/" class="btn btn-danger" id="cancel">取消</a>
       </div>
       <div class="input-group tip">
-        <span>没有账号？<a href="/blogregister">点击创建</a></span>
+        <span>已有账号？<a href="/login">点击登录</a></span>
         <span>
             <a href="/">返回首页</a>
         </span>
       </div>
     </form>
-    <button @click="reg()">按钮</button>
   </div>
 </template>
 
@@ -67,8 +84,7 @@ export default {
         method: 'post',
         url: '/iot/reg',
         data: {
-          // user: this.inputUser
-          username: "皮皮",
+          username: "嘤嘤嘤",
           protectid: 1,
           phone: "15399274446",
           sex: '男',
@@ -102,17 +118,21 @@ export default {
 <style scoped lang="less">
 .reg {
   width: 500px;
-  margin: 0 auto;
+  margin: 105px auto;
   background-color: #fff;
-  padding: 30px;
-  padding-top: 135px;
+  padding: 40px;
   border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 3px 0 3px #ddd;
   h2 {
     text-align: center;
     margin: 10px 0;
   }
   form {
     padding: 20px;
+  }
+  .cell .input-group-addon {
+    width: 80px;
   }
   .cell>input {
     border: none;
@@ -123,7 +143,7 @@ export default {
     flex: 1;
   }
   .cell>span {
-    text-align: right;
+    text-align: center;
     width: 80px;
   }
   .subBtn {

@@ -1,24 +1,29 @@
 <template>
-  <div class="product">product</div>
+  <div class="oldHealth">
+    oldHealth
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'product',
+  name: 'oldHealth',
   data() {
     return {
+      
     };
+  },
+  components: {
   },
   computed:{
   },
   watch:{
   },
-  methods: {},
+  methods: {
+  },
 };
 </script>
-
 <style scoped lang="less">
-.product {
+.oldHealth {
   height: 1000px;
   padding-top: 55px;
 }

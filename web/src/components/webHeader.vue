@@ -13,7 +13,7 @@
       <router-link to="/product" class="nav-list"><a>产品中心</a></router-link>
       <router-link to="/news" class="nav-list"><a>新闻资讯</a></router-link>
       <router-link to="/about" class="nav-list"><a>关于我们</a></router-link>
-      <router-link to="/iot" class="nav-list"><a>登录</a></router-link>
+      <router-link to="/my" class="nav-list"><a>我的</a></router-link>
     </div>
   </div>
 </template>
@@ -54,6 +54,7 @@ export default {
   position: relative;
   transition: all 3s;
   .flag {
+    box-sizing: border-box;
     width: 100%;
     padding: 0 10%;
     font-size: 12px;
@@ -77,14 +78,15 @@ export default {
     height: 65px;
     background-color: #fff;
     border-bottom: 1px solid #eaecef;
+    box-sizing: border-box;
     .nav-logo {
       display: flex;
       flex-direction: column;
       justify-content: center;
       font-weight: 600;
       .logo {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         margin: 0 auto;
       }
     }
