@@ -1,8 +1,8 @@
 <template>
-  <div class="webHeader" :class="{ fixed: isFixed}">
+  <div class="webHeader">
     <div class="flag">
       <span class="flag-left">欢迎进入智能健康手环官网！</span>
-      <span class="flag-right"><i class="iconfont icon-dianhua"> </i> 400-123-000 <i class="iconfont icon-22"> </i> echo_msy@163.com </span>
+      <span class="flag-right"><i class="iconfont icon-dianhua"></i> 400-123-000 <i class="iconfont icon-22"> </i> echo_msy@163.com </span>
     </div>
     <div class="nav">
       <div class="nav-logo">
@@ -23,7 +23,6 @@ export default {
   name: 'webHeader',
   data() {
     return {
-      isFixed: false
     };
   },
   computed:{
@@ -31,17 +30,6 @@ export default {
   watch:{
   },
   methods: {
-    scrollHandle(e) {
-      let top = e.srcElement.scrollingElement.scrollTop;
-      if(top < 600) {
-        this.isFixed = true;
-      } else {
-        this.isFixed = false;
-      }
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.scrollHandle);
   }
 };
 </script>
@@ -94,19 +82,12 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      a:link {
-        color: #090329;
-      }
-      a:active {
-        border-bottom: 3px solid rgb(190, 0, 0);
-      }
-      a:hover {
-        border-bottom: 3px solid rgb(190, 0, 0);
+      &:router-link-active {
+        a {
+          border-bottom: 3px solid rgb(190, 0, 0);
+        }
       }
     } 
-  }
-  .fixed {
-    position: fixed;
   }
 }
 </style>

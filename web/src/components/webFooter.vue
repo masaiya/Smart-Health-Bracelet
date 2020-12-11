@@ -6,10 +6,30 @@
         <a href="javascript:;">咨询热线 > </a>
         <span>地址：陕西省西安市长安区</span>
         <ul class="media-list">
-          <li class="item-list"><img src="../assets/img/wx.png" alt="健康智能手环微信"></li>
-          <li class="item-list"><img src="../assets/img/douyin.png" alt="健康智能手环抖音"></li>
-          <li class="item-list"><img src="../assets/img/zhihu.png" alt="健康智能手环知乎"></li>
-          <li class="item-list"><img src="../assets/img/weibo.png" alt="健康智能手环微博"></li>
+          <li class="item-list">
+            <img src="../assets/img/wx.png" alt="健康智能手环微信">
+            <div class="footer-icon">
+              <img src="../assets/img/weixin.png">
+            </div>
+          </li>
+          <li class="item-list">
+            <img src="../assets/img/douyin.png" alt="健康智能手环抖音">
+            <div class="footer-icon">
+              <img src="../assets/img/qq.png">
+            </div>
+          </li>
+          <li class="item-list">
+            <img src="../assets/img/zhihu.png" alt="健康智能手环知乎">
+            <div class="footer-icon">
+              <img src="../assets/img/weixin.png">
+            </div>
+          </li>
+          <li class="item-list">
+            <img src="../assets/img/weibo.png" alt="健康智能手环微博">
+            <div class="footer-icon">
+              <img src="../assets/img/qq.png">
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -64,9 +84,27 @@ export default {
         padding: 0;
         .item-list {
           flex: 1;
+          &:hover {
+            .footer-icon {
+              opacity: 100%;
+            }
+          }
           img {
             width: 50px;
             height: 50px;
+          }
+          .footer-icon {
+            position: relative;
+            padding: 10px 0 0;
+            transition: .3s ease;
+            opacity: 0;
+            img {
+              position: absolute;
+              top: -155px;
+              left: 0;
+              width: 100px;
+              height: 100px;
+            }
           }
         }
       }
