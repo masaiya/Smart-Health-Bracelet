@@ -1,5 +1,8 @@
 <template>
-  <div class="oldHealth" v-if="old_health">
+<div class="oldHealth">
+  kkkk
+</div>
+  <!-- <div class="oldHealth" v-if="old_health">
     <div class="protectid">
       <p>被保护人id：{{ old_health.userid }}</p>
     </div>
@@ -29,7 +32,7 @@
         width="180">
       </el-table-column>
     </el-table>
-  </div>
+  </div> -->
 </template>
 
 <script>

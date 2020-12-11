@@ -1,5 +1,8 @@
 <template>
-  <div class="newHealth" v-if="new_health">
+<div class="newHealth">
+  hhhhhh
+</div>
+  <!-- <div class="newHealth" v-if="new_health">
     <div class="protectid">
       <p>被保护人id：{{ new_health.userid }}</p>
       <p>时间：{{ new_health.date }}</p>
@@ -24,7 +27,7 @@
         width="180">
       </el-table-column>
     </el-table>
-  </div>
+  </div> -->
 </template>
 
 <script>

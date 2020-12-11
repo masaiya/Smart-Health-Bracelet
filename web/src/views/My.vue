@@ -3,10 +3,10 @@
     <login v-if="!user"></login>
     <div v-else class="myContainer">
       <div class="aside">
-        <router-link to="/new_health" class="nav_list">最新健康信息</router-link>
-        <router-link to="/old_health" class="nav_list">历史健康信息</router-link>
-        <router-link to="/new_danger" class="nav_list">最新危险信息</router-link>
-        <router-link to="/old_danger" class="nav_list">历史危险信息</router-link>
+        <router-link to="/my" class="nav_list">最新健康信息</router-link>
+        <router-link to="/my/old_health" class="nav_list">历史健康信息</router-link>
+        <router-link to="/my/new_danger" class="nav_list">最新危险信息</router-link>
+        <router-link to="/my/old_danger" class="nav_list">历史危险信息</router-link>
       </div>
       <div class="main">
         <router-view></router-view>

@@ -32,25 +32,24 @@ const routes = [
     path: '/my',
     name: 'My',
     component: () => import(/* webpackChunkName: "about" */ '../views/My.vue'),
-    // redirect: '/new_health',
     children: [
       {
-        path: '/new_health',
+        path: '/my',
         name: 'NewHealth',
         component: () => import(/* webpackChunkName: "newHealth" */ '../views/info/NewHealth.vue')
       },
       {
-        path: '/new_danger',
+        path: '/my/new_danger',
         name: 'NewDanger',
         component: () => import(/* webpackChunkName: "newDanger" */ '../views/info/NewDanger.vue')
       },
       {
-        path: '/old_health',
+        path: '/my/old_health',
         name: 'OldHealth',
         component: () => import(/* webpackChunkName: "oldHealth" */ '../views/info/OldHealth.vue')
       },
       {
-        path: '/old_danger',
+        path: '/my/old_danger',
         name: 'OldDanger',
         component: () => import(/* webpackChunkName: "oldDanger" */ '../views/info/OldDanger.vue')
       }
