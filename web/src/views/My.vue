@@ -39,7 +39,6 @@ export default {
 </script>
 <style scoped lang="less">
 .my {
-  height: 1000px;
   padding-top: 55px;
   .myContainer {
     display: flex;

@@ -1,49 +1,44 @@
 <template>
-  <div class="newHealth">
+  <div class="newHealth" v-if="new_health">
+    <div class="protectid">
+      <p>被保护人id：{{ new_health.userid }}</p>
+      <p>时间：{{ new_health.date }}</p>
+    </div>
     <el-table
       :data="tableData"
       border
-      style="width: 120px">
+      style="width: 600px">
       <el-table-column
-        prop="date"
-        label="日期"
+        prop="heartrate"
+        label="心率"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
+        prop="temperature"
+        label="体温"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="address"
-        label="地址">
+        prop="steps"
+        label="步数"
+        width="180">
       </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script>
+/**
+   heartrate: "46"
+    steps: 0
+    temperature: "17.0"
+ */
 export default {
   name: 'newHealth',
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      new_health: null,
+      tableData: []
     }
   },
   components: {
@@ -57,7 +52,7 @@ export default {
       method: 'get',
       url: '/iot/sel_new_health',
       params: {
-        userid: 1,
+        userid: sessionStorage.user,
       },
       datatype: 'json',
       header: {
@@ -65,11 +60,20 @@ export default {
       }
     }).then(res => {
       console.log(res);
-    })
+      this.new_health = res.data;
+      this.tableData.push(this.new_health);
+    }).catch(err => {
+      this.$message('服务器繁忙，请稍后再试！');
+      console.log(err);
+    }) 
   }
 };
 </script>
 <style scoped lang="less">
 .newHealth {
+  height: 1000px;
+  .protectid {
+    line-height: 50px;
+  }
 }
 </style>
