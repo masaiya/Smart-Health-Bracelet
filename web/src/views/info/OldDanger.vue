@@ -25,6 +25,5 @@ export default {
 <style scoped lang="less">
 .oldDanger {
   height: 1000px;
-  padding-top: 55px;
 }
 </style>

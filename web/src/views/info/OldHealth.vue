@@ -1,8 +1,5 @@
 <template>
-<div class="oldHealth">
-  kkkk
-</div>
-  <!-- <div class="oldHealth" v-if="old_health">
+  <div class="oldHealth" v-if="old_health">
     <div class="protectid">
       <p>被保护人id：{{ old_health.userid }}</p>
     </div>
@@ -32,7 +29,10 @@
         width="180">
       </el-table-column>
     </el-table>
-  </div> -->
+  </div>
+  <div class="oldHealth" v-else>
+    kkkk
+  </div>
 </template>
 
 <script>
@@ -73,6 +73,7 @@ export default {
 </script>
 <style scoped lang="less">
 .oldHealth {
+  height: 1000px;
   .protectid {
     line-height: 50px;
   }
