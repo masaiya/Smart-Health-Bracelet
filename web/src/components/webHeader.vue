@@ -9,7 +9,7 @@
         <img src="../assets/logo.jpg" alt="" class="logo">
         <span>智能健康手环</span>
       </div>
-      <router-link to="/" class="nav-list"><a>首页</a></router-link>
+      <router-link to="/home" class="nav-list" exact><a>首页</a></router-link>
       <router-link to="/product" class="nav-list"><a>产品中心</a></router-link>
       <router-link to="/news" class="nav-list"><a>新闻资讯</a></router-link>
       <router-link to="/about" class="nav-list"><a>关于我们</a></router-link>
@@ -82,10 +82,8 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      &:router-link-active {
-        a {
-          border-bottom: 3px solid rgb(190, 0, 0);
-        }
+      &.router-link-active {
+        border-bottom: 3px solid rgb(190, 0, 0);
       }
     } 
   }

@@ -28,11 +28,6 @@
 </template>
 
 <script>
-/**
-   heartrate: "46"
-    steps: 0
-    temperature: "17.0"
- */
 export default {
   name: 'newHealth',
   data() {

@@ -32,7 +32,7 @@ const routes = [
     path: '/my',
     name: 'My',
     component: () => import(/* webpackChunkName: "about" */ '../views/My.vue'),
-    redirect: '/new_health',
+    // redirect: '/new_health',
     children: [
       {
         path: '/new_health',
