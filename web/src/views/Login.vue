@@ -57,7 +57,7 @@ export default {
         if(res.data) {
           sessionStorage.setItem('user',res.data.userid);
           this.$message(res.data.username + ',欢迎您!');
-          window.location.href = '/new_health';
+          window.location.href = '/my';
         } else {
           this.$alert('密码或账号错误', '提示', {
             confirmButtonText: '确定'

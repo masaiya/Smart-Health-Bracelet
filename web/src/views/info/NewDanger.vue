@@ -1,32 +1,10 @@
 <template>
-  <div class="newDanger" v-if="new_danger">
-    <div class="protectid">
-      <p>被保护人id：{{ new_danger.userid }}</p>
-      <p>时间：{{ new_danger.date }}</p>
+  <div class="newDanger">
+    <h2 class="text">跌倒预警</h2>
+    <div class="protect">
+      <p>您所保护的用户姓名 <span>{{ dangerData.username }}</span>, 于 <span>{{ dangerData.time }}</span> 摔倒了。</p>
+      <p>请您速度前去查看！！！</p>
     </div>
-    <el-table
-      :data="tableData"
-      border
-      style="width: 600px">
-      <el-table-column
-        prop="heartrate"
-        label="心率"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="temperature"
-        label="体温"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="steps"
-        label="步数"
-        width="180">
-      </el-table-column>
-    </el-table>
-  </div>
-  <div class="newDanger" v-else>
-    kkkk
   </div>
 </template>
 
@@ -36,7 +14,7 @@ export default {
   data() {
     return {
       new_danger: null,
-      tableData: []
+      dangerData: []
     }
   },
   components: {
@@ -58,8 +36,8 @@ export default {
       }
     }).then(res => {
       console.log(res);
-      this.new_danger = res.data;
-      this.tableData.push(this.new_danger);
+      this.dangerData = res.data;
+      console.log(this.dangerData);
     }).catch(err => {
       this.$message('服务器繁忙，请稍后再试！');
       console.log(err);
@@ -70,8 +48,14 @@ export default {
 <style scoped lang="less">
 .newDanger {
   height: 1000px;
-  .protectid {
-    line-height: 50px;
+  .text {
+    text-align: left;
+    color: rgb(190,0,0);
+    font-size: 25px;
+  }
+  span {
+    color: rgb(190, 0, 0);
+    font-weight: 500;
   }
 }
 </style>

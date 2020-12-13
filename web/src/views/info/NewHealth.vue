@@ -7,9 +7,9 @@
     <hr>
     <div class="health">
       <div class="list">
-        <p><span class="name">血压</span></p>
-        <p>当前血压为：<span>{{ healthData.pressure }}</span></p>
-        <p>您当前血压属于 <span class="conclusion">{{ pressureAdvice }}</span></p>
+        <p><span class="name">心率</span></p>
+        <p>当前心率为：<span>{{ healthData.heartrate }} BPM</span></p>
+        <p>您当前心率属于 <span class="conclusion">{{ heartAdvice }}</span></p>
       </div>
       <div class="list">
         <p><span class="name">体温</span></p>
@@ -34,12 +34,7 @@ export default {
         userid: 18,
         date: 2012-12-12
       },
-      healthData: {
-        temperature: "36.5",
-        pressure: "50",
-        steps: 1200,
-        date: 1607433097000
-      }
+      healthData: []
     }
   },
   components: {
@@ -70,13 +65,13 @@ export default {
         return "恭喜，已经完成今日运动~";
       }
     },
-    pressureAdvice() {
-      if(parseFloat(this.healthData.pressure) <= 90) {
-        return "低血压";
-      } else if(parseFloat(this.healthData.pressure) >= 140) {
-        return "高血压";
+    heartAdvice() {
+      if(this.healthData.heartrate < 60) {
+        return "过低";
+      } else if(this.healthData.heartrate > 100) {
+        return "过高";
       } else {
-        return "正常血压";
+        return "正常"; 
       }
     }
   },
@@ -95,7 +90,8 @@ export default {
       }
     }).then(res => {
       this.new_health = res.data;
-      this.healthData.push(this.new_health);
+      this.healthData = res.data;
+      console.log(this.healthData);
     }).catch(err => {
       this.$message('服务器繁忙，请稍后再试！');
       console.log(err);

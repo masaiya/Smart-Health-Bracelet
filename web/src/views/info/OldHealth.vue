@@ -2,14 +2,14 @@
   <div class="oldHealth" v-if="old_health">
     <div class="health">
       <div class="list">
-        <p><span class="name">血压</span></p>
+        <p><span class="name">心率</span></p>
         <div class="main">
           <div id="myPressure" class="charts" :style="{width: '500px', height: '400px'}"></div>
           <div class="scribe">
-            <p class="text">平均血压值：<span class="data">{{ pressureAverage }} mmHg</span></p>
-            <p class="text">最高血压值：<span class="data">{{ pressureMax }} mmHg</span></p>
-            <p class="text">最低血压值：<span class="data">{{ pressureMin }} mmHg</span></p>
-            <p class="text">上一周血压数据表明，您当前血压值 <span class="data">{{ pressureStatus }}</span></p>
+            <p class="text">平均心率值：<span class="data">{{ pressureAverage }} BPM</span></p>
+            <p class="text">最高心率值：<span class="data">{{ pressureMax }} BPM</span></p>
+            <p class="text">最低心率值：<span class="data">{{ pressureMin }} BPM</span></p>
+            <p class="text">上一周心率数据表明，您的心率值 <span class="data">{{ pressureStatus }}</span></p>
           </div>
         </div>
       </div>
@@ -46,15 +46,16 @@ export default {
   data() {
     return {
       old_health: null,
-      healthDate: [
-        {"healthid":1,"userid":1,"temperature":"35","pressure":"108","steps":899,"date":1607310460000},
-        {"healthid":2,"userid":1,"temperature":"35","pressure":"125","steps":1500,"date":1607325847000},
-        {"healthid":3,"userid":1,"temperature":"36.5","pressure":"134","steps":3850,"date":1607433097000},
-        {"healthid":4,"userid":1,"temperature":"35","pressure":"101","steps":6578,"date":1607310460000},
-        {"healthid":5,"userid":1,"temperature":"35","pressure":"120","steps":4825,"date":1607325847000},
-        {"healthid":6,"userid":1,"temperature":"36.5","pressure":"111","steps":8472,"date":1607433097000},
-        {"healthid":7,"userid":1,"temperature":"36.5","pressure":"132","steps":4550,"date":1607433097000}
-      ]
+      healthDate: []
+    //   [
+    //     {"healthid":1,"userid":1,"temperature":"35","pressure":"108","steps":899,"date":1607310460000},
+    //     {"healthid":2,"userid":1,"temperature":"35","pressure":"125","steps":1500,"date":1607325847000},
+    //     {"healthid":3,"userid":1,"temperature":"36.5","pressure":"134","steps":3850,"date":1607433097000},
+    //     {"healthid":4,"userid":1,"temperature":"35","pressure":"101","steps":6578,"date":1607310460000},
+    //     {"healthid":5,"userid":1,"temperature":"35","pressure":"120","steps":4825,"date":1607325847000},
+    //     {"healthid":6,"userid":1,"temperature":"36.5","pressure":"111","steps":8472,"date":1607433097000},
+    //     {"healthid":7,"userid":1,"temperature":"36.5","pressure":"132","steps":4550,"date":1607433097000}
+    //   ]
     }
   },
   components: {
@@ -63,28 +64,28 @@ export default {
     pressureAverage() {
       var res = 0;
       this.healthDate.map(function(i) {
-        res += parseFloat(i.pressure);
+        res += parseFloat(i.heartrate);
       })
-      return (res / 7).toFixed(2);
+      return (res / this.healthDate.length).toFixed(2);
     },
     temperatureAverage() {
       var res = 0;
       this.healthDate.map(function(i) {
         res += parseFloat(i.temperature);
       })
-      return (res / 7).toFixed(2);
+      return (res / this.healthDate.length).toFixed(2);
     },
     stepsAverage() {
       var res = 0;
       this.healthDate.map(function(i) {
         res += parseFloat(i.steps);
       })
-      return (res / 7).toFixed(2);
+      return (res / this.healthDate.length).toFixed(0);
     },
     pressureMax() {
       var res = [];
       this.healthDate.map(function(i) {
-        res.push(parseFloat(i.pressure));
+        res.push(parseFloat(i.heartrate));
       })  
       return Math.max(...res);
     },
@@ -105,7 +106,7 @@ export default {
     pressureMin() {
       var res = [];
       this.healthDate.map(function(i) {
-        res.push(parseFloat(i.pressure));
+        res.push(parseFloat(i.heartrate));
       })  
       return Math.min(...res);  
     },
@@ -148,42 +149,42 @@ export default {
         'Content-Type': 'application/json'
       }
     }).then(res => {
-      this.old_health = res.data;
       this.healthDate = res.data;
+      console.log(this.healthDate);
+      this.pressCharts();
+      this.temperatureCharts();
+      this.stepsCharts();
     }).catch(err => {
       this.$message('服务器繁忙，请稍后再试！');
       console.log(err);
     })
   },
-  mounted() {
-    this.pressCharts();
-    this.temperatureCharts();
-    this.stepsCharts();
-  },
   methods: {
     pressCharts() {
       let myChart = echarts.init(document.getElementById('myPressure'));
       myChart.setOption({
-        title: { text: '上一周血压指标' },
+        title: { text: '上一周心率指标' },
         tooltip: {
           trigger: 'axis'
         },
         legend: {
-          data: ['血压指标']
+          data: ['心率指标']
         },
         xAxis: {
           name: '日期',
           type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: this.healthDate.map(function(i) {
+            return i.date
+          })
         },
         yAxis: {
-          name: '血压值(mmHg)',
+          name: '心率值(BPM)',
           type: 'value'
         },
         series: [{
-          name: '血压值',
+          name: '心率值',
           data: this.healthDate.map(function(i) {
-            return i.pressure
+            return i.heartrate
           }),
           type: 'line',
           smooth: true
@@ -203,7 +204,9 @@ export default {
         xAxis: {
           name: '日期',
           type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: this.healthDate.map(function(i) {
+            return i.date
+          })
         },
         yAxis: {
           name: '体温(℃)',
@@ -232,7 +235,9 @@ export default {
         xAxis: {
           name: '日期',
           type: 'category',
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: this.healthDate.map(function(i) {
+            return i.date  
+          })
         },
         yAxis: {
           name: '步数(步)',
