@@ -1,56 +1,142 @@
 <template>
   <div class="oldHealth" v-if="old_health">
-    <div class="protectid">
-      <p>被保护人id：{{ old_health.userid }}</p>
+    <div class="health">
+      <div class="list">
+        <p><span class="name">血压</span></p>
+        <div class="main">
+          <div id="myPressure" class="charts" :style="{width: '500px', height: '400px'}"></div>
+          <div class="scribe">
+            <p class="text">平均血压值：<span class="data">{{ pressureAverage }} mmHg</span></p>
+            <p class="text">最高血压值：<span class="data">{{ pressureMax }} mmHg</span></p>
+            <p class="text">最低血压值：<span class="data">{{ pressureMin }} mmHg</span></p>
+            <p class="text">上一周血压数据表明，您当前血压值 <span class="data">{{ pressureStatus }}</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+        <p><span class="name">体温</span></p>
+        <div class="main">
+          <div id="myTemperature" class="charts" :style="{width: '500px', height: '400px'}"></div>
+          <div class="scribe">
+            <p class="text">平均体温值：<span class="data">{{ temperatureAverage }} ℃</span></p>
+            <p class="text">最高体温值：<span class="data">{{ temperatureMax }} ℃</span></p>
+            <p class="text">最低体温值：<span class="data">{{ temperatureMin }} ℃</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="list">
+        <p><span class="name">步数</span></p>
+        <div class="main">
+          <div id="mySteps" :style="{width: '500px', height: '400px'}"></div>
+          <div class="scribe">
+            <p class="text">平均步数：<span class="data">{{ stepsAverage }} 步</span></p>
+            <p class="text">最高步数：<span class="data">{{ stepsMax }} 步</span></p>
+            <p class="text">最低步数：<span class="data">{{ stepsMin }} 步</span></p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div></div>
-    <el-table
-      :data="tableData"
-      border
-      style="width: 480px">
-      <el-table-column
-        prop="heartrate"
-        label="心率"
-        width="100">
-      </el-table-column>
-      <el-table-column
-        prop="temperature"
-        label="体温"
-        width="100">
-      </el-table-column>
-      <el-table-column
-        prop="steps"
-        label="步数"
-        width="100">
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="时间"
-        width="180">
-      </el-table-column>
-    </el-table>
-  </div>
-  <div class="oldHealth" v-else>
-    kkkk
   </div>
 </template>
 
 <script>
+import echarts from 'echarts';
 export default {
   name: 'oldHealth',
   data() {
     return {
       old_health: null,
-      tableData: null
+      healthDate: [
+        {"healthid":1,"userid":1,"temperature":"35","pressure":"108","steps":899,"date":1607310460000},
+        {"healthid":2,"userid":1,"temperature":"35","pressure":"125","steps":1500,"date":1607325847000},
+        {"healthid":3,"userid":1,"temperature":"36.5","pressure":"134","steps":3850,"date":1607433097000},
+        {"healthid":4,"userid":1,"temperature":"35","pressure":"101","steps":6578,"date":1607310460000},
+        {"healthid":5,"userid":1,"temperature":"35","pressure":"120","steps":4825,"date":1607325847000},
+        {"healthid":6,"userid":1,"temperature":"36.5","pressure":"111","steps":8472,"date":1607433097000},
+        {"healthid":7,"userid":1,"temperature":"36.5","pressure":"132","steps":4550,"date":1607433097000}
+      ]
     }
   },
   components: {
   },
   computed:{
+    pressureAverage() {
+      var res = 0;
+      this.healthDate.map(function(i) {
+        res += parseFloat(i.pressure);
+      })
+      return (res / 7).toFixed(2);
+    },
+    temperatureAverage() {
+      var res = 0;
+      this.healthDate.map(function(i) {
+        res += parseFloat(i.temperature);
+      })
+      return (res / 7).toFixed(2);
+    },
+    stepsAverage() {
+      var res = 0;
+      this.healthDate.map(function(i) {
+        res += parseFloat(i.steps);
+      })
+      return (res / 7).toFixed(2);
+    },
+    pressureMax() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.pressure));
+      })  
+      return Math.max(...res);
+    },
+    stepsMax() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.steps));
+      })  
+      return Math.max(...res);
+    },
+    temperatureMax() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.temperature));
+      })  
+      return Math.max(...res);
+    },
+    pressureMin() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.pressure));
+      })  
+      return Math.min(...res);  
+    },
+    stepsMin() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.steps));
+      })  
+      return Math.min(...res);
+    },
+    temperatureMin() {
+      var res = [];
+      this.healthDate.map(function(i) {
+        res.push(parseFloat(i.temperature));
+      })  
+      return Math.min(...res);
+    },
+    pressureStatus() {
+      if(this.pressureMin <= 90) {
+        return "偏低";
+      } else if(this.pressureMax >= 140) {
+        return "偏高";
+      } else {
+        return "正常";
+      }
+    }
   },
   watch:{
   },
   created() {
+    this.old_health = sessionStorage.user,
     this.$axios({
       method: 'get',
       url: '/iot/sel_all_health',
@@ -63,19 +149,139 @@ export default {
       }
     }).then(res => {
       this.old_health = res.data;
-      this.tableData = res.data;
+      this.healthDate = res.data;
     }).catch(err => {
       this.$message('服务器繁忙，请稍后再试！');
       console.log(err);
     })
+  },
+  mounted() {
+    this.pressCharts();
+    this.temperatureCharts();
+    this.stepsCharts();
+  },
+  methods: {
+    pressCharts() {
+      let myChart = echarts.init(document.getElementById('myPressure'));
+      myChart.setOption({
+        title: { text: '上一周血压指标' },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['血压指标']
+        },
+        xAxis: {
+          name: '日期',
+          type: 'category',
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          name: '血压值(mmHg)',
+          type: 'value'
+        },
+        series: [{
+          name: '血压值',
+          data: this.healthDate.map(function(i) {
+            return i.pressure
+          }),
+          type: 'line',
+          smooth: true
+        }]
+      });
+    },
+    temperatureCharts() {
+      let myChart = echarts.init(document.getElementById('myTemperature'));
+      myChart.setOption({
+        title: { text: '上一周体温指标' },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['体温指标']
+        },
+        xAxis: {
+          name: '日期',
+          type: 'category',
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          name: '体温(℃)',
+          type: 'value'
+        },
+        series: [{
+          name: '体温',
+          data: this.healthDate.map(function(i) {
+            return i.temperature
+          }),
+          type: 'line',
+          smooth: true
+        }]
+      });  
+    },
+    stepsCharts() {
+      let myChart = echarts.init(document.getElementById('mySteps'));
+      myChart.setOption({
+        title: { text: '上一周步数指标' },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['步数指标']
+        },
+        xAxis: {
+          name: '日期',
+          type: 'category',
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          name: '步数(步)',
+          type: 'value'
+        },
+        series: [{
+          name: '步数',
+          data: this.healthDate.map(function(i) {
+            return i.steps
+          }),
+          type: 'line',
+          smooth: true
+        }]
+      });  
+    }
   }
 };
 </script>
 <style scoped lang="less">
 .oldHealth {
-  height: 1000px;
-  .protectid {
-    line-height: 50px;
+  .health {
+    .list {
+      margin: 30px 0px;
+      .name {
+        font-size: 20px;
+        color: #fff;
+        background: rgb(190, 0, 0);
+        padding: 5px 20px;
+        border-radius: 10px;
+      }
+      .main {
+        display: flex;
+        justify-content: center;
+        .charts {
+          flex-basis: 500px;
+        }
+        .scribe {
+          margin-top: 20px;
+          flex: 1;
+          .text {
+            margin: 15px 20px;
+            padding: 5px 10px;
+            .data {
+              color: rgb(190, 0, 0)
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

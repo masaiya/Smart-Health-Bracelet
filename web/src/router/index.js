@@ -52,6 +52,11 @@ const routes = [
         path: '/my/old_danger',
         name: 'OldDanger',
         component: () => import(/* webpackChunkName: "oldDanger" */ '../views/info/OldDanger.vue')
+      },
+      {
+        path: '/my/location',
+        name: 'Location',
+        component: () => import(/* webpackChunkName: "location" */ '../views/info/Location.vue')
       }
     ]
   },

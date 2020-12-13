@@ -10,8 +10,7 @@ import './assets/css/common.less'
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios;
-
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 
 new Vue({
   router,

@@ -7,6 +7,7 @@
         <router-link to="/my/old_health" class="nav_list">历史健康信息</router-link>
         <router-link to="/my/new_danger" class="nav_list">最新危险信息</router-link>
         <router-link to="/my/old_danger" class="nav_list">历史危险信息</router-link>
+        <router-link to="/my/location" class="nav_list">当前地理位置</router-link>
       </div>
       <div class="main">
         <router-view></router-view>
