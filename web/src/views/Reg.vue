@@ -80,31 +80,30 @@ export default {
   },
   methods: {
     reg() {
+      console.log(this.inputUser);
       this.$axios({
         method: 'post',
         url: '/iot/reg',
         data: {
-          username: "嘤嘤嘤",
-          protectid: 1,
-          phone: "15399274446",
-          sex: '男',
-          age: 18,
-          address: "陕西省西安市",
-          works: '程序员',
-          passwords: '123456'
+          username: this.inputUser.username,
+          protectid: parseInt(this.inputUser.protectid),
+          phone: this.inputUser.phone,
+          sex: this.inputUser.sex,
+          age: parseInt(this.inputUser.age),
+          address: this.inputUser.address,
+          works: this.inputUser.works,
+          passwords: this.inputUser.password
         },
         datatype: 'json',
         header: {
           'Content-Type': 'application/json'
         }
       }).then(res => {
-        var code = res.data.err_code;
-        if (code === 0) {
-          window.alert('登录成功，即将跳转！');
-          window.location.href = '/';
-        } else if (code === 1) {
-          window.alert('邮箱或者密码错误！');
-        } else if (code === 500) {
+        if(res) {
+          console.log(res);
+          window.alert('登录成功,您的登录账户是'+res.data.userid);
+          window.location.href = '/login';
+        } else {
           window.alert('服务器繁忙，请稍后再试！');
         }
       }).catch(err => {
