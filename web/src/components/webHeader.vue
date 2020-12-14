@@ -14,6 +14,7 @@
       <router-link to="/news" class="nav-list"><a>新闻资讯</a></router-link>
       <router-link to="/about" class="nav-list"><a>关于我们</a></router-link>
       <router-link to="/my" class="nav-list"><a>我的</a></router-link>
+      <a class="nav-list a" @click="logout">退出登录</a>
     </div>
   </div>
 </template>
@@ -30,6 +31,10 @@ export default {
   watch:{
   },
   methods: {
+    logout() {
+      sessionStorage.removeItem("user");
+      window.location.href = '/my';
+    }
   }
 };
 </script>
@@ -86,6 +91,12 @@ export default {
         border-bottom: 3px solid rgb(190, 0, 0);
       }
     } 
+  }
+  .a {
+    cursor: pointer;
+    &:hover {
+      border-bottom: 3px solid rgb(190, 0, 0);
+    }
   }
 }
 </style>
