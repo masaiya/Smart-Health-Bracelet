@@ -21,7 +21,6 @@ module.exports = {
   runtimeCompiler: true,
   // 生产环境 sourceMap
   productionSourceMap: true,
-
   // configureWebpack 会通过 webpack-merge 合并到最终的配置中
   configureWebpack: config => {
     if (process.env.NODE_ENV === "production") {

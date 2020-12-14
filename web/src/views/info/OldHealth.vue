@@ -47,15 +47,6 @@ export default {
     return {
       old_health: null,
       healthDate: []
-    //   [
-    //     {"healthid":1,"userid":1,"temperature":"35","pressure":"108","steps":899,"date":1607310460000},
-    //     {"healthid":2,"userid":1,"temperature":"35","pressure":"125","steps":1500,"date":1607325847000},
-    //     {"healthid":3,"userid":1,"temperature":"36.5","pressure":"134","steps":3850,"date":1607433097000},
-    //     {"healthid":4,"userid":1,"temperature":"35","pressure":"101","steps":6578,"date":1607310460000},
-    //     {"healthid":5,"userid":1,"temperature":"35","pressure":"120","steps":4825,"date":1607325847000},
-    //     {"healthid":6,"userid":1,"temperature":"36.5","pressure":"111","steps":8472,"date":1607433097000},
-    //     {"healthid":7,"userid":1,"temperature":"36.5","pressure":"132","steps":4550,"date":1607433097000}
-    //   ]
     }
   },
   components: {
