@@ -101,7 +101,7 @@ export default {
       }).then(res => {
         if(res) {
           console.log(res);
-          window.alert('登录成功,您的登录账户是'+res.data.userid);
+          window.alert('注册成功,您的登录账户是'+res.data.userid);
           window.location.href = '/login';
         } else {
           window.alert('服务器繁忙，请稍后再试！');

@@ -62,6 +62,9 @@ module.exports = {
     });
   },
   devServer: {
+    public: '222.24.34.27',
+    port: '8080',
+    index: 'home',
     proxy: {
       '/iot': {    // 定义代理的名称
         changeOrigin: true,  // 是否启动代理

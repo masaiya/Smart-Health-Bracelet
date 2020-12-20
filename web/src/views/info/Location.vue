@@ -5,7 +5,7 @@
       :scroll-wheel-zoom="true"
       :center="center"
       :zoom="zoom"
-      @ready="handler"
+      @ready="create"
       ak="your ak">
     </baidu-map>
   </div>
@@ -18,23 +18,16 @@ export default {
     return {
       center: {lng: 0, lat: 0},
       zoom: 15,
-      position: null
+      position: []
+      // position: ["108.912503", "34.161847"]
+      // 108.912503,34.161847
     }
   },
   mounted() {
   },
   methods: {
-    handler () {
-      this.center.lng = parseFloat(this.position[1])
-      this.center.lat = parseFloat(this.position[0])  
-      this.zoom = 15
-    }
-  },
-  components: {
-    BaiduMap
-  },
-  created() {
-    this.$axios({
+    create() {
+      this.$axios({
       method: 'get',
       url: '/iot/sel_new_positions',
       params: {
@@ -45,10 +38,35 @@ export default {
         'Content-Type': 'application/json'
       }
     }).then(res => {
-      console.log(res.data.positionss);
       this.position = res.data.positionss.split('&');
       console.log(this.position);
+    }).then(() => {
+      this.center.lng = parseFloat(this.position[1])
+      this.center.lat = parseFloat(this.position[0])
+      this.zoom = 15
     })
+    }
+  },
+  components: {
+    BaiduMap
+  },
+  created() {
+    // this.$axios({
+    //   method: 'get',
+    //   url: '/iot/sel_new_positions',
+    //   params: {
+    //     userid: sessionStorage.user,
+    //   },
+    //   datatype: 'json',
+    //   header: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).then(res => {
+    //   this.position = res.data.positionss.split('&');
+    //   console.log(this.position);
+    //   this.lag = this.position[1];
+    //   this.lat = this.position[0];
+    // })
   }
 }
 </script>

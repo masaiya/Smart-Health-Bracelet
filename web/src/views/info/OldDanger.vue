@@ -4,6 +4,7 @@
     <el-table
       class="table"
       :data="dangerData"
+      height="700"
       border
       style="width: 540px">
       <el-table-column
